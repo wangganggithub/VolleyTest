@@ -18,14 +18,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_input"
+        android:layout_above="@+id/checkBox_baidu"
         android:id="@+id/scrollView"
         >
 
         <TextView
+            android:textIsSelectable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_output" />
     </ScrollView>
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/google_play"
+        android:id="@+id/checkBox_google"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/meizu"
+        android:id="@+id/checkBox_meizu"
+        android:layout_above="@+id/linearLayout"
+        android:layout_toRightOf="@+id/checkBox_google"
+        android:layout_toEndOf="@+id/checkBox_google" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tencent"
+        android:id="@+id/checkBox_tencent"
+        android:layout_above="@+id/linearLayout"
+        android:layout_toRightOf="@+id/checkBox_meizu"
+        android:layout_toEndOf="@+id/checkBox_meizu" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/three_six_zero"
+        android:id="@+id/checkBox_360"
+        android:layout_above="@+id/checkBox_google"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nine_one"
+        android:id="@+id/checkBox_91"
+        android:layout_above="@+id/checkBox_google"
+        android:layout_toRightOf="@+id/checkBox_360"
+        android:layout_toEndOf="@+id/checkBox_360"/>
 
     <LinearLayout
         style="?android:actionBarStyle"
@@ -33,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        >
+        android:id="@+id/linearLayout">
         <Button
             style="?android:buttonBarButtonStyle"
             android:layout_width="0dp"
@@ -53,6 +99,5 @@
             android:text="@string/clear"
             android:id="@+id/button2" />
         </LinearLayout>
-
 
 </RelativeLayout>
