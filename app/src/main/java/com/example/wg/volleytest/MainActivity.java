@@ -1,6 +1,7 @@
 package com.example.wg.volleytest;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,18 +13,25 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.example.wg.volleytest.marketurl.Coolapk;
 import com.example.wg.volleytest.marketurl.Google;
-import com.example.wg.volleytest.marketurl.MarketUrlFactory;
+import com.example.wg.volleytest.marketurl.Market;
+import com.example.wg.volleytest.marketurl.MarketFactory;
 import com.example.wg.volleytest.marketurl.Meizu;
 import com.example.wg.volleytest.marketurl.Tencent;
-import com.example.wg.volleytest.marketurl.ThreeSixZero;
-import com.example.wg.volleytest.volley.StringRequestPC;
+import com.example.wg.volleytest.marketurl.AppChina;
+import com.example.wg.volleytest.marketurl.MarketListener;
+import com.example.wg.volleytest.marketurl.MarketRequest;
+import com.example.wg.volleytest.marketurl.Wandoujia;
 import com.example.wg.volleytest.volley.VolleySingleton;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class MainActivity extends Activity {
 
-    private Response.Listener<String> listener;
     private Response.ErrorListener errorListener;
 
     @Override
@@ -32,13 +40,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final TextView resp = (TextView) findViewById(R.id.textView_output);
-        listener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("onResponse", response);
-                resp.setText(response);
-            }
-        };
         errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -49,29 +50,34 @@ public class MainActivity extends Activity {
     }
 
     public void onClickGo(View view) {
+        TextView output = (TextView) findViewById(R.id.textView_output);
         TextView pkg = (TextView) findViewById(R.id.textView_input);
         String pkgName = pkg.getText().toString();
-        String url = "";
 
-        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox_meizu);
-        if (checkBox.isChecked()) {
-            url = MarketUrlFactory.buildUrl(Meizu.class, pkgName);
-        }
-        checkBox = (CheckBox) findViewById(R.id.checkBox_google);
-        if (checkBox.isChecked()) {
-            url = MarketUrlFactory.buildUrl(Google.class, pkgName);
-        }
-        checkBox = (CheckBox) findViewById(R.id.checkBox_tencent);
-        if (checkBox.isChecked()) {
-            url = MarketUrlFactory.buildUrl(Tencent.class, pkgName);
-        }
-        checkBox = (CheckBox) findViewById(R.id.checkBox_360);
-        if (checkBox.isChecked()) {
-            url = MarketUrlFactory.buildUrl(ThreeSixZero.class, pkgName);
-        }
+        HashMap<Integer, String> map = new HashMap<>();
+        map.put(R.id.checkBox_google, Google.class.getName());
+        map.put(R.id.checkBox_meizu, Meizu.class.getName());
+        map.put(R.id.checkBox_tencent, Tencent.class.getName());
+        map.put(R.id.checkBox_appchina, AppChina.class.getName());
+        map.put(R.id.checkBox_wdj, Wandoujia.class.getName());
+        map.put(R.id.checkBox_coolapk, Coolapk.class.getName());
 
-        Log.i("onClickGo", url);
-        VolleySingleton.getInstance(this).addToRequestQueue(new StringRequestPC(Request.Method.GET, url, listener, errorListener).setTag(this));
+        for (Object o : map.entrySet()) {
+            Map.Entry entry = (Map.Entry) o;
+            CheckBox checkBox = (CheckBox) findViewById((Integer) entry.getKey());
+            if (checkBox.isChecked()) {
+                Market market = MarketFactory.buildMarket((String) entry.getValue());
+                Log.i("onClickGo", market.buildUrl(pkgName));
+                MarketListener listener = new MarketListener(market, output);
+                MarketRequest request = new MarketRequest(
+                        Request.Method.GET,
+                        market.buildUrl(pkgName),
+                        listener,
+                        errorListener);
+                request.setTag(this);
+                VolleySingleton.getInstance(this).addToRequestQueue(request);
+            }
+        }
     }
 
     public void onClickClear(View view) {
@@ -101,6 +107,7 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 

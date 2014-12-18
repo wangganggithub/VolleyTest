@@ -6,11 +6,34 @@
     <string name="action_settings">Settings</string>
     <string name="clear">Clear</string>
     <string name="go">Go</string>
-    <string name="meizu">Meizu</string>
     <string name="google_play">Google Play</string>
-    <string name="tencent">Tencent</string>
-    <string name="baidu">Baidu</string>
-    <string name="nine_one">91</string>
-    <string name="three_six_zero">360</string>
+    <string name="coolapk">CoolAPK</string>
+    <string name="meizu">Meizu Flyme</string>
+    <string name="tencent">Tencent MyApp</string>
+    <string name="wandoujia">Wandoujia</string>
+    <string name="app_china">AppChina</string>
+    <string name="key_market_list" translatable="false">key_market_list</string>
+
+    <array name="entry_list_market">
+        <item>@string/google_play</item>
+        <item>@string/coolapk</item>
+        <item>@string/meizu</item>
+        <item>@string/tencent</item>
+        <item>@string/wandoujia</item>
+        <item>@string/app_china</item>
+    </array>
+
+    <!-- Java Class name -->
+    <array name="entry_value_market">
+        <item>Google</item>
+        <item>Coolapk</item>
+        <item>Meizu</item>
+        <item>Tencent</item>
+        <item>Wandoujia</item>
+        <item>AppChina</item>
+    </array>
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="market_available">Market Available</string>
 
 </resources>

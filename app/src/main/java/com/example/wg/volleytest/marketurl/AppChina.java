@@ -6,7 +6,7 @@ import android.net.Uri;
  *
  * Created by WG on 12/17/2014.
  */
-public class ThreeSixZero extends MarketUrl {
+public class AppChina extends Market {
 
     public final static String SCHEME = "http";
     public final static String AUTHORITY = "www.appchina.com";
@@ -14,8 +14,11 @@ public class ThreeSixZero extends MarketUrl {
 
     //  http://www.appchina.com/app/com.qihoo360.mobilesafe
 
-    public ThreeSixZero() {
-        super(SCHEME, AUTHORITY, PATHS, "");
+    public final static String SELECTOR = "span.app-statistic"; // <span class="app-statistic">3475万下载 / 1052人喜欢 / 8483人评论 <br />大小：14.95M 更新：2014-12-05</span>
+
+
+    public AppChina() {
+        super(SCHEME, AUTHORITY, PATHS, "", SELECTOR);
     }
 
     @Override

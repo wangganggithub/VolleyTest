@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <MultiSelectListPreference
+        android:key="@string/key_market_list"
+        android:title="@string/market_available"
+        android:entries="@array/entry_list_market"
+        android:entryValues="@array/entry_value_market"
+        />
+</PreferenceScreen>
