@@ -13,20 +13,19 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.example.wg.volleytest.marketurl.AppChina;
 import com.example.wg.volleytest.marketurl.Coolapk;
 import com.example.wg.volleytest.marketurl.Google;
 import com.example.wg.volleytest.marketurl.Market;
 import com.example.wg.volleytest.marketurl.MarketFactory;
-import com.example.wg.volleytest.marketurl.Meizu;
-import com.example.wg.volleytest.marketurl.Tencent;
-import com.example.wg.volleytest.marketurl.AppChina;
 import com.example.wg.volleytest.marketurl.MarketListener;
 import com.example.wg.volleytest.marketurl.MarketRequest;
+import com.example.wg.volleytest.marketurl.Meizu;
+import com.example.wg.volleytest.marketurl.Tencent;
 import com.example.wg.volleytest.marketurl.Wandoujia;
 import com.example.wg.volleytest.volley.VolleySingleton;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 

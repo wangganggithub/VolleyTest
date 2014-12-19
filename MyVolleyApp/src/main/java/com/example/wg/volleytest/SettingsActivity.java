@@ -1,8 +1,8 @@
 package com.example.wg.volleytest;
 
 import android.app.Activity;
-import android.preference.PreferenceFragment;
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
 
 
 public class SettingsActivity extends Activity {

@@ -1,7 +1,6 @@
 package com.example.wg.volleytest.marketurl;
 
 import android.net.Uri;
-import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
